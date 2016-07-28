@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('JSONedit', ['ui.sortable'])
+angular.module('jsonedit', ['ui.sortable'])
 .directive('ngModelOnblur', function() {
     // override the default input to update on blur
     // from http://jsfiddle.net/cn8VF/
@@ -9,12 +9,12 @@ angular.module('JSONedit', ['ui.sortable'])
         require: 'ngModel',
         link: function(scope, elm, attr, ngModelCtrl) {
             if (attr.type === 'radio' || attr.type === 'checkbox') return;
-            
+
             elm.unbind('input').unbind('keydown').unbind('change');
             elm.bind('blur', function() {
                 scope.$apply(function() {
                     ngModelCtrl.$setViewValue(elm.val());
-                });         
+                });
             });
         }
     };
@@ -49,7 +49,7 @@ angular.module('JSONedit', ['ui.sortable'])
         } else {
             scope.chevron = "glyphicon-chevron-down";
         }
-        
+
 
         //////
         // Helper functions
@@ -181,9 +181,9 @@ angular.module('JSONedit', ['ui.sortable'])
         // Note:
         // sometimes having a different ng-model and then saving it on ng-change
         // into the object or array is necessary for all updates to work
-        
+
         // recursion
-        var switchTemplate = 
+        var switchTemplate =
             '<span ng-switch on="getType(val)" >'
                 + '<json ng-switch-when="Object" child="val" type="object" default-collapsed="defaultCollapsed"></json>'
                 + '<json ng-switch-when="Array" child="val" type="array" default-collapsed="defaultCollapsed"></json>'
@@ -197,9 +197,9 @@ angular.module('JSONedit', ['ui.sortable'])
                     + 'placeholder="Empty" ng-model-onblur ng-change="child[key] = val"/>'
                 + '</span>'
             + '</span>';
-        
+
         // display either "plus button" or "key-value inputs"
-        var addItemTemplate = 
+        var addItemTemplate =
         '<div ng-switch on="showAddKey" class="block" >'
             + '<span ng-switch-when="true">';
                 if (scope.type == "object"){
@@ -207,7 +207,7 @@ angular.module('JSONedit', ['ui.sortable'])
                     addItemTemplate += '<input placeholder="Name" type="text" ui-keyup="{\'enter\':\'addItem(child)\'}" '
                         + 'class="form-control input-sm addItemKeyInput" ng-model="$parent.keyName" /> ';
                 }
-                addItemTemplate += 
+                addItemTemplate +=
                 // value type dropdown
                 '<select ng-model="$parent.valueType" ng-options="option for option in valueTypes" class="form-control input-sm"'
                     + 'ng-init="$parent.valueType=\''+stringName+'\'" ui-keydown="{\'enter\':\'addItem(child)\'}"></select>'
@@ -225,7 +225,7 @@ angular.module('JSONedit', ['ui.sortable'])
                 + '<button type="button" class="addObjectItemBtn" ng-click="$parent.showAddKey = true"><i class="glyphicon glyphicon-plus"></i></button>'
             + '</span>'
         + '</div>';
-    
+
         // start template
         if (scope.type == "object"){
             var template = '<i ng-click="toggleCollapse()" class="glyphicon" ng-class="chevron"></i>'
@@ -273,3 +273,8 @@ angular.module('JSONedit', ['ui.sortable'])
     }
   };
 }]);
+
+if (typeof module === 'object') {
+  module.exports='jsonedit';
+}
+

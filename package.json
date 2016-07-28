@@ -1,0 +1,24 @@
+{
+  "name": "jsonedit",
+  "version": "1.0.0",
+  "description": "User friendly, visual JSON editor built as an AngularJS directive. Provides a basic GUI to edit JSON.",
+  "main": "js/directives.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uhjish/JSONedit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uhjish/JSONedit/issues"
+  },
+  "homepage": "https://github.com/uhjish/JSONedit#readme",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-sortable": "^0.14.3",
+    "bootstrap": "^3.3.7"
+  }
+}
